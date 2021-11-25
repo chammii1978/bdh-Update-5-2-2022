@@ -153,16 +153,9 @@ def get_readable_message():
                 except:
                     pass
                 msg += f"\n<b>🚫:</b> <code>/{BotCommands.CancelMirror} {download.gid()}</code>"
-            msg += "\n╠▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬╣\n"
-
           else:
-
-
-
-
-
                 msg += f"\n<b>Size: </b>{download.size()}"
-            msg += "\n\n"
+            msg += "\n╠▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬╣\n"
             if STATUS_LIMIT is not None and index == STATUS_LIMIT:
                 break
         total, used, free = shutil.disk_usage('.')
