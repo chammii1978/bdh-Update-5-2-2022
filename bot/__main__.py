@@ -50,10 +50,10 @@ def stats(update, context):
             f'📊 টোটাল ব্যবহৃত ব্যান্ডউইথ 📊\n<b>📤 আপলোড:  {sent}</b>\n' \
             f'<b>📥 ডাউনলোড:  {recv}</b>\n\n' \
             f'<b>🖥️ সিপিউ লোড:  {cpuUsage}</b>%\n' \
-            f'<b>💾 র‍্যাম:  {memory}%</b>\n' \
+            f'<b>💾 র‍্যাম:  {mem_p}%</b>\n' \
             f'<b>💿 ডিস্ক:  {disk}%</b>\n' \
-            f'<b>🔸 ফিজিক্যাল কোর:</b> {p_core}\n'\
-            f'<b>🔸 মোট কোর:</b> {t_core}\n\n'\
+            f'<b>🔸 ফিজিক্যাল কোর:</b> {p_core} তি\n'\
+            f'<b>🔸 মোট কোর:</b> {t_core} টি\n\n'\
             f'<b>⚠ SWAP:</b> {swap_t} | <b>🌡️ব্যবহৃত SWAP:</b> {swap_p}%\n'\
             f'<b>�💾টোটাল মেমোরি:</b> {mem_t}\n'\
             f'<b>🔥 ফ্রী মেমোরি:</b> {mem_a}\n'\
@@ -68,7 +68,7 @@ def start(update, context):
     reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
         start_string = f'''
-এই বট সকল ডাইরেক্ট লিঙ্ক/ টরেন্ট গুগল ড্রাইভে আপলোড করে থাকে!
+এই বট সকল ডিরেক্ট লিঙ্ক/ টরেন্ট গুগল ড্রাইভে আপলোড করে থাকে!
 সকল কমান্ড দেখতে /{BotCommands.HelpCommand} কমান্ড ব্যবহার করুন
 '''
         sendMarkup(start_string, context.bot, update, reply_markup)
@@ -169,29 +169,15 @@ help = telegraph.create_page(
     )["path"]
 
 help_string = f'''
-🥺🙏 বট ব্যবহার এর পূর্বে নিচের লিঙ্ক থেকে সকল বট কমান্ড ও তাদের ব্যবহার ও কার্যাবলী জেনে নিন.. 🙏🥺
-
-/{BotCommands.PingCommand}: Check how long it takes to Ping the Bot
-
-/{BotCommands.AuthorizeCommand}: Authorize a chat or a user to use the bot (Can only be invoked by Owner & Sudo of the bot)
-
-/{BotCommands.UnAuthorizeCommand}: Unauthorize a chat or a user to use the bot (Can only be invoked by Owner & Sudo of the bot)
-
-/{BotCommands.AuthorizedUsersCommand}: Show authorized users (Only Owner & Sudo)
-
-/{BotCommands.AddSudoCommand}: Add sudo user (Only Owner)
-
-/{BotCommands.RmSudoCommand}: Remove sudo users (Only Owner)
-
-/{BotCommands.RestartCommand}: Restart and update the bot
-
-/{BotCommands.LogCommand}: Get a log file of the bot. Handy for getting crash reports
-
-/{BotCommands.SpeedCommand}: Check Internet Speed of the Host
-
-/{BotCommands.ShellCommand}: Run commands in Shell (Only Owner)
-
-/{BotCommands.ExecHelpCommand}: Get help for Executor module (Only Owner)
+🥺🙏 বট ব্যবহারের পূর্বে বট কমান্ড ও তাদের ব্যবহার ও কার্যাবলী জেনে নিন.. 🙏🥺
+/{BotCommands.MirrorCommand} [download_url][magnet_link]: ফাইল ড্রাইভে মিরর করার জন্য এই কমান্ড ব্যবহার করুন।
+/{BotCommands.ZipMirrorCommand} [download_url][magnet_link]: এই কমান্ড দিয়ে ডিরেক্ট লিংক/ গুগল ড্রাইভ ফোল্ডার জিপ (.zip) করা যাবে।
+/{BotCommands.UnzipMirrorCommand} [download_url][magnet_link]: এই কমান্ড দিয়ে ডিরেক্ট ফাইল/ গুগল ড্রাইভ এর জিপ করা ফোল্ডার আনজিপ করা যাবে।
+/{BotCommands.QbMirrorCommand} [magnet_link]: কিউ-বিটটরেন্ট দিয়ে ফাইল ড্রাইভে মিরর করার জন্য এবং  ডাউনলোড এর পূর্বে ফাইল সিলেক্ট করতে <b>/{BotCommands.QbMirrorCommand} s</b> কমান্ড ব্যাবহার করুন  
+/{BotCommands.QbZipMirrorCommand} [magnet_link]: কিউ-বিটটরেন্ট দিয়ে ডাউনলোডকৃত ফাইল (.zip) করার জন্য এই কমান্ড ব্যবহার করুন।
+/{BotCommands.QbUnzipMirrorCommand} [magnet_link]: কিউ-বিটটরেন্ট দিয়ে ডাউনলোডকৃত জিপ ফাইল আনজিপ করার জন্য এই কমান্ড ব্যবহার করুন।
+/{BotCommands.CloneCommand} [drive_url]: গুগল ড্রাইভ এর ফাইল/ ফোল্ডার কপি করতে এই কমান্ড ব্যাবহার করুন ।
+🥺🙏 নিচের লিঙ্ক থেকে সকল বট কমান্ড ও তাদের ব্যবহার ও কার্যাবলী জেনে নিন.. 🙏🥺
 '''
 
 def bot_help(update, context):
@@ -202,7 +188,6 @@ def bot_help(update, context):
 
 '''
 botcmds = [
-
         (f'{BotCommands.MirrorCommand}', 'Start Mirroring'),
         (f'{BotCommands.ZipMirrorCommand}','Start mirroring and upload as .zip'),
         (f'{BotCommands.UnzipMirrorCommand}','Extract files'),
