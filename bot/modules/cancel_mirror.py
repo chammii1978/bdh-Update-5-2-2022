@@ -30,7 +30,7 @@ def cancel_mirror(update, context):
     if len(args) == 1 and (
         not mirror_message or mirror_message.message_id not in keys
     ):
-        msg = f"Reply to active <code>/{BotCommands.MirrorCommand}</code> message which was used to start the download or send <code>/{BotCommands.CancelMirror} GID</code> to cancel it!"
+        msg = f"যেই মেসেজের মাধ্যমে <code>/{BotCommands.MirrorCommand}</code> কমান্ড দিয়েছেন সেই মেসেজে /cancel কমান্ড রিপ্লাই করুন অথবা এইভাবে ব্যবহার করুন <code>/{BotCommands.CancelMirror} GID</code> to cancel it!"
         sendMessage(msg, context.bot, update)
         return
     if dl.status() == MirrorStatus.STATUS_ARCHIVING:

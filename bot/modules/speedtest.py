@@ -25,7 +25,6 @@ def speedtest(update, context):
 <b>ডাউনলোড স্পীড:</b>  <code>{speed_convert(result['download'] / 8)}</code>
 <b>পিং :</b> <code>{result['ping']} ms</code>
 <b>আই.এস.পি রেটিং:</b> <code>{result['client']['isprating']}</code>
-
 <b>@BangladeshHoarding</b>
 '''
     editMessage(string_speed, speed)

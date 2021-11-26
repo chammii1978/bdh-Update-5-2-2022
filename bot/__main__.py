@@ -54,10 +54,7 @@ def stats(update, context):
             f'<b>💿 ডিস্ক:  {disk}%</b>\n' \
             f'<b>SWAP:</b> {swap_t} | <b>Used:</b> {swap_p}%\n'\
             f'<b>✍️ অনুবাদকঃ "এলেক্স স্টুয়ার্ট ©️" \n🙏 সম্পাদনায়ঃ "🇧🇩বাংলাদেশ হোর্ডিং🇧🇩" \n@BangladeshHoarding</b>'
-
-
     sendMessage(stats, context.bot, update)
-
 
 def start(update, context):
     buttons = button_build.ButtonMaker()
