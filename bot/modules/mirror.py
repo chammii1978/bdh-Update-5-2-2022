@@ -399,8 +399,8 @@ def _mirror(bot, update, isZip=False, extract=False, isQbit=False, isLeech=False
             pass
     LOGGER.info(link)
     if not bot_utils.is_url(link) and not bot_utils.is_magnet(link) and not os.path.exists(link):
-        help_msg = "Send link along with command line or by reply\n"
-        help_msg += "<b>Examples:</b> \n<code>/command</code> link |newname(TG files or Direct inks) pswd: mypassword(zip/unzip)"
+        help_msg = "মিরর কমান্ডের সাথে ডিরেক্ট লিঙ্ক অথবা ম্যাগনেট লিঙ্ক প্রদান করুন\n"
+        help_msg += "<b>এইভাবে:</b> \n<code>/command</code> link |newname(TG files or Direct inks) pswd: mypassword(zip/unzip)"
         help_msg += "\nBy replying to link: <code>/command</code> |newname(TG files or Direct inks) pswd: mypassword(zip/unzip)"
         help_msg += "\nFor Direct Links Authorization: <code>/command</code> link |newname pswd: mypassword\nusername\npassword (Same with by reply)"
         return sendMessage(help_msg, bot, update)
