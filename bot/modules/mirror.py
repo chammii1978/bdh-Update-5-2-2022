@@ -400,9 +400,9 @@ def _mirror(bot, update, isZip=False, extract=False, isQbit=False, isLeech=False
     LOGGER.info(link)
     if not bot_utils.is_url(link) and not bot_utils.is_magnet(link) and not os.path.exists(link):
         help_msg = "মিরর কমান্ডের সাথে ডিরেক্ট লিঙ্ক অথবা ম্যাগনেট লিঙ্ক প্রদান করুন\n"
-        help_msg += "<b>এইভাবে:</b> \n<code>/command</code> link |newname(TG files or Direct inks) pswd: mypassword(zip/unzip)"
-        help_msg += "\nBy replying to link: <code>/command</code> |newname(TG files or Direct inks) pswd: mypassword(zip/unzip)"
-        help_msg += "\nFor Direct Links Authorization: <code>/command</code> link |newname pswd: mypassword\nusername\npassword (Same with by reply)"
+        help_msg += "<b>এইভাবে:</b> \n<code>/command</code> Link \n মিরর করার সময় ফাইলের নাম চেঞ্জ করতে চাইলে এভাবে কমান্ড দিতে হবে \n <code>/command</code> Link/Magnet | New Name(TG files or Direct inks এর ক্ষেত্রে) \n পাসওয়ার্ড প্রোটেক্টেড জিপ/আনজিপ করতে এভাবে কমান্ড দিতে হবে \n <code>/command</code> Link/Magnet | pswd: mypassword (zip/unzip এর ক্ষেত্রে)"
+        help_msg += "\nলিংকে রিপ্লে করে করতে: <code>/command</code> | Newname(TG files or Direct inks এর ক্ষেত্রে) pswd: mypassword(zip/unzip এর ক্ষেত্রে)"
+        help_msg += "\nপাসওয়ার্ড প্রোটেক্টেড লিঙ্ক এর ক্ষেত্রে: <code>/command</code> link |newname pswd: mypassword\nusername\npassword (Same with by reply)"
         return sendMessage(help_msg, bot, update)
     elif bot_utils.is_url(link) and not bot_utils.is_magnet(link) and not os.path.exists(link) and isQbit:
         try:
