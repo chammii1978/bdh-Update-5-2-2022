@@ -431,7 +431,7 @@ def _mirror(bot, update, isZip=False, extract=False, isQbit=False, isLeech=False
 
     if bot_utils.is_gdrive_link(link):
         if not isZip and not extract and not isLeech:
-            sendMessage(f"গুগল ড্রাইভ ফাইল/ফোল্ডার কপি করতে /{BotCommands.CloneCommand} ব্যবহার করুন\nগুগল ড্রাইভ ফাইল/ফোল্ডার জিপ করতে /{BotCommands.ZarMirrorCommand} ব্যবহার করুন\nগুগল ড্রাইভ ফাইল/ফোল্ডার আনজিপ করতে /{BotCommands.UnzipMirrorCommand} ব্যবহার করুন", bot, update)
+            sendMessage(f"গুগল ড্রাইভ ফাইল/ফোল্ডার কপি করতে /{BotCommands.CloneCommand} ব্যবহার করুন\nগুগল ড্রাইভ ফাইল/ফোল্ডার জিপ করতে /{BotCommands.ZipMirrorCommand} ব্যবহার করুন\nগুগল ড্রাইভ ফাইল/ফোল্ডার আনজিপ করতে /{BotCommands.UnzipMirrorCommand} ব্যবহার করুন", bot, update)
             return
         res, size, name, files = gdriveTools.GoogleDriveHelper().helper(link)
         if res != "":
