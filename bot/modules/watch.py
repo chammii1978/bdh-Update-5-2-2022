@@ -49,9 +49,9 @@ def _watch(bot, update, isZip=False, isLeech=False, pswd=None):
         link = reply_to.text.strip()
 
     if not is_url(link):
-        help_msg = "Send link along with command line or by reply\n"
-        help_msg += "<b>Examples:</b> \n<code>/command</code> link |newname pswd: mypassword(zip)"
-        help_msg += "\nBy replying to link: <code>/command</code> |newname pswd: mypassword(zip)"
+        help_msg = "/watch [youtube-dl supported link] [quality] | [CustomName] ইউটিউব ভিডিও মিরর করতে এইভাবে কমান্ড ব্যাবহার করুন.\n\nনোট: কোয়ালিটি ও নতুন নাম না দিলেও চলবে\n"
+        help_msg += "Example of quality: audio, 144, 240, 360, 480, 720, 1080, 2160."
+        help_msg += "\n\nনতুন নাম দিতে চাইলে | এই চিহ্নের পরে দিন\n\n এইভাবে:\n /watch https://youtu.be/Pk_TthLeE 720 | TESTfile \nএই ফাইলটি ৭২০পি তে ডাউনলোড হবে এবং ফাইলের নাম হবে TESTfile"
         return sendMessage(help_msg, bot, update)
 
     listener = MirrorListener(bot, update, isZip, isLeech=isLeech, pswd=pswd)
