@@ -21,7 +21,8 @@ def cloneNode(update, context):
         link = reply_to.text
     else:
         link = ''
-    if is_gdtot_link(link):
+    gdtot_link = is_gdtot_link(link)
+    if gdtot_link:
         try:
             link = gdtot(link)
         except DirectDownloadLinkException as e:
@@ -38,6 +39,8 @@ def cloneNode(update, context):
             if smsg:
                 msg3 = "আপনই যেই ফাইলটি ক্লোন করতে চাচ্ছেন সেটি ড্রাইভে আছে.\nনিচের লিংকে আপনার ফাইলটি পেয়ে যাবেন:"
                 sendMarkup(msg3, context.bot, update, button)
+                if gdtot_link:
+                    gd.deletefile(link)
                 return
         if CLONE_LIMIT is not None:
             LOGGER.info('Checking File/Folder Size...')
@@ -80,6 +83,8 @@ def cloneNode(update, context):
             sendMessage(men + result, context.bot, update)
         else:
             sendMarkup(result + cc, context.bot, update, button)
+        if gdtot_link:
+            gd.deletefile(link)
     else:
         sendMessage('গুগল ড্রাইভ এর পাবলিক লিংক অথবা শেয়ার পারমিশন আছে এমন লিংক প্রদান করুন.🙃', context.bot, update)
 
