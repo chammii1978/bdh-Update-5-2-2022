@@ -37,7 +37,7 @@ def cloneNode(update, context):
             LOGGER.info('Checking File/Folder if already in Drive...')
             smsg, button = gd.drive_list(name, True, True)
             if smsg:
-                msg3 = "আপনই যেই ফাইলটি ক্লোন করতে চাচ্ছেন সেটি ড্রাইভে আছে.\nনিচের লিংকে আপনার ফাইলটি পেয়ে যাবেন:"
+                msg3 = "আপনি যেই ফাইলটি ক্লোন করতে চাচ্ছেন সেটি ড্রাইভে আছে.\nনিচের লিংকে আপনার ফাইলটি পেয়ে যাবেন:"
                 sendMarkup(msg3, context.bot, update, button)
                 if gdtot_link:
                     gd.deletefile(link)
