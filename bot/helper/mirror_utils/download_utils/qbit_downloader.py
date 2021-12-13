@@ -158,11 +158,11 @@ class QbitTorrent:
                         gd = GoogleDriveHelper()
                         qbmsg, button = gd.drive_list(qbname, True)
                         if qbmsg:
-                            msg = "File/Folder is already available in Drive."
+                            msg = "আপনি যেই ফাইলটি মিরর করতে চাচ্ছেন সেটি ড্রাইভে আছে."
                             self.client.torrents_pause(torrent_hashes=self.ext_hash)
                             time.sleep(0.3)
                             self.listener.onDownloadError(msg)
-                            sendMarkup("Here are the search results:", self.listener.bot, self.listener.update, button)
+                            sendMarkup("নিচের লিংকে ফাইলটি পেয়ে যাবেন:", self.listener.bot, self.listener.update, button)
                             self.client.torrents_delete(torrent_hashes=self.ext_hash)
                             self.client.auth_log_out()
                             self.updater.cancel()
