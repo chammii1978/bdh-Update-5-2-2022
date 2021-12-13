@@ -254,7 +254,7 @@ class MirrorListener(listeners.MirrorListeners):
             return
         with download_dict_lock:
             msg = f'<b>📂● ফাইলের নাম: </b><code>{download_dict[self.uid].name()}</code>\n\n<b>╔● সাইজ: </b>{size}'
-            msg += f'\n\n<b>╟● ফাইলের ধরন: </b>{typ}'
+            msg += f'\n<b>╟● ফাইলের ধরন: </b>{typ}'
             if os.path.isdir(f'{DOWNLOAD_DIR}/{self.uid}/{download_dict[self.uid].name()}'):
                 msg += f'\n<b>╟● সাব-ফোল্ডার সংখ্যা: </b>{folders}'
                 msg += f'\n<b>╟● ফাইল সংখ্যা: </b>{files}'
