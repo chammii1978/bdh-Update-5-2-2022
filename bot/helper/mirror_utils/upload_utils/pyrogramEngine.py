@@ -141,7 +141,7 @@ class TgUploader:
             LOGGER.info(str(f))
             time.sleep(f.x)
         except RPCError as e:
-            LOGGER.error(str(e) + str(up_path))
+            LOGGER.error(f"RPCError: {e} {up_path}")
         except Exception as err:
             LOGGER.info(str(err))
             self.is_cancelled = True
