@@ -126,7 +126,7 @@ def get_readable_message():
                 globals()['PAGE_NO'] -= 1
             START = COUNT
         for index, download in enumerate(list(download_dict.values())[START:], start=1):
-            msg += f"<b>📂● ফাইলের নাম:</b> <code>{download.name()}</code>"
+            msg += f"<b>📂● </b> <code>{download.name()}</code>"
             msg += f"\n<b>╔● বর্তমান অবস্থা: <i>{download.status()} </i></b>"
             if download.status() not in [
                 MirrorStatus.STATUS_ARCHIVING,
@@ -134,13 +134,13 @@ def get_readable_message():
                 MirrorStatus.STATUS_SPLITTING,
             ]:
                 msg += f"\n<b>╟● প্রোগ্রেস:</b> <code>{get_progress_bar_string(download)}</code>" \
-                       f"\n<b>╟● সম্পূর্ন হয়েছে: {download.progress()} of 100% </b>"
+                       f"\n<b>╟● সম্পূর্ন : {download.progress()} of 100% </b>"
                 if download.status() == MirrorStatus.STATUS_CLONING:
-                    msg += f"\n<b>ক্লোন হয়েছে:</b> <code>{get_readable_file_size(download.processed_bytes())}</code> of <code>{download.size()}</code>"
+                    msg += f"\n<b>ক্লোন :</b> <code>{get_readable_file_size(download.processed_bytes())}</code> of <code>{download.size()}</code>"
                 elif download.status() == MirrorStatus.STATUS_UPLOADING:
-                    msg += f"\n<b>╟● আপলোড হয়েছে: {get_readable_file_size(download.processed_bytes())} of {download.size()} </b>"
+                    msg += f"\n<b>╟● আপলোড : {get_readable_file_size(download.processed_bytes())} of {download.size()} </b>"
                 else:
-                    msg += f"\n<b>╟● ডাউনলোড হয়েছে: {get_readable_file_size(download.processed_bytes())} of {download.size()} </b>"
+                    msg += f"\n<b>╟● ডাউনলোড : {get_readable_file_size(download.processed_bytes())} of {download.size()} </b>"
                 msg += f"\n<b>╟● স্পীড: {download.speed()} </b>" \
                        f"\n<b>╟● সম্পূর্ন হতে: {download.eta()} </b>"
                 try:
@@ -234,7 +234,11 @@ def is_gdrive_link(url: str):
     return "drive.google.com" in url
 
 def is_gdtot_link(url: str):
-    url = re.match(r'https?://.*\.gdtot\.\S+', url)
+    url = re.match(r'https?://(?:\S*\.)?(?:gdtot)\.\S+', url)
+    return bool(url)
+
+def is_appdrive_link(url: str):
+    url = re.match(r'https?://(?:\S*\.)?(?:appdrive|driveapp)\.in/\S+', url)
     return bool(url)
 
 def is_mega_link(url: str):
