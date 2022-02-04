@@ -413,11 +413,13 @@ except KeyError:
 try:
     GDTOT_CRYPT = getConfig('GDTOT_CRYPT')
     PHPSESSID = getConfig('PHPSESSID')
+    CRYPT = getConfig('CRYPT')
     if len(GDTOT_CRYPT) == 0:
         raise KeyError
 except KeyError:
     GDTOT_CRYPT = None
     PHPSESSID = None
+    CRYPT = None
 try:
     TOKEN_PICKLE_URL = getConfig('TOKEN_PICKLE_URL')
     if len(TOKEN_PICKLE_URL) == 0:
