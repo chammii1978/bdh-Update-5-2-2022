@@ -12,6 +12,7 @@ from bot import dispatcher, LOGGER, CLONE_LIMIT, STOP_DUPLICATE, download_dict, 
 from bot.helper.ext_utils.bot_utils import get_readable_file_size, is_gdrive_link, is_gdtot_link, new_thread
 from bot.helper.mirror_utils.download_utils.direct_link_generator import gdtot
 from bot.helper.ext_utils.exceptions import DirectDownloadLinkException
+from bot.helper.ext_utils.parser import appdrive, gdtot
 
 @new_thread
 def cloneNode(update, context):
@@ -23,15 +24,21 @@ def cloneNode(update, context):
         link = reply_to.text
     else:
         link = ''
-    gdtot_link = is_gdtot_link(link)
-    if gdtot_link:
-        try:
-            msg = sendMessage(f"Processing: <code>{link}</code>", context.bot, update)
+    try:
+        msg = sendMessage(f"<b>Processing:</b> <code>{link}</code>", context.bot, update)
+        LOGGER.info(f"Processing: {link}")
+        is_gdtot = is_gdtot_link(link)
+        if is_gdtot:
             link = gdtot(link)
-            deleteMessage(context.bot, msg)
-        except DirectDownloadLinkException as e:
-            deleteMessage(context.bot, msg)
-            return sendMessage(str(e), context.bot, update)
+        is_appdrive = is_appdrive_link(link)
+        if is_appdrive:
+            apdict = appdrive(link)
+            link = apdict.get('gdrive_link')
+        deleteMessage(context.bot, msg)
+    except DirectDownloadLinkException as e:
+        deleteMessage(context.bot, msg)
+        LOGGER.error(e)
+        return sendMessage(str(e), context.bot, update)
     if is_gdrive_link(link):
         gd = gdriveTools.GoogleDriveHelper()
         res, size, name, files = gd.helper(link)
@@ -44,8 +51,13 @@ def cloneNode(update, context):
             if smsg:
                 msg3 = "আপনি যেই ফাইলটি ক্লোন করতে চাচ্ছেন সেটি ড্রাইভে আছে.\nনিচের লিংকে আপনার ফাইলটি পেয়ে যাবেন:"
                 sendMarkup(msg3, context.bot, update, button)
-                if gdtot_link:
-                    gd.deletefile(link)
+                if is_gdtot:
+                    LOGGER.info(f"Deleting: {link}")
+                    gd.deleteFile(link)
+                elif is_appdrive:
+                    if apdict.get('link_type') == 'login':
+                        LOGGER.info(f"Deleting: {link}")
+                        gd.deleteFile(link)
                 return
         if CLONE_LIMIT is not None:
             LOGGER.info('Checking File/Folder Size...')
