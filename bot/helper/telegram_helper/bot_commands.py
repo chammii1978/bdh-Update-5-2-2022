@@ -31,7 +31,7 @@ class _BotCommands:
         self.ShellCommand = 'shell2'
         self.ExecHelpCommand = 'exechelp2'
         self.LeechSetCommand = 'leechset2'
-        self.SetThumbCommand = 'setthumb1'
+        self.SetThumbCommand = 'setthumb2'
         self.LeechCommand = 'leech2'
         self.UnzipLeechCommand = 'unzipleech2'
         self.ZipLeechCommand = 'zipleech2'
