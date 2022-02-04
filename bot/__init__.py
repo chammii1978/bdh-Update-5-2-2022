@@ -402,8 +402,8 @@ try:
 except KeyError:
     CUSTOM_FILENAME = None
 try:
-    APPDRIVE_EMAIL = get_config('APPDRIVE_EMAIL')
-    APPDRIVE_PASS = get_config('APPDRIVE_PASS')
+    APPDRIVE_EMAIL = getConfig('APPDRIVE_EMAIL')
+    APPDRIVE_PASS = getConfig('APPDRIVE_PASS')
     if len(APPDRIVE_EMAIL) == 0 or len(APPDRIVE_PASS) == 0:
         raise KeyError
 except KeyError:
@@ -411,7 +411,7 @@ except KeyError:
     APPDRIVE_PASS = None
 
 try:
-    GDTOT_CRYPT = get_config('GDTOT_CRYPT')
+    GDTOT_CRYPT = getConfig('GDTOT_CRYPT')
     if len(GDTOT_CRYPT) == 0:
         raise KeyError
 except KeyError:
